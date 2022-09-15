@@ -25,7 +25,18 @@ class EMBDCORECPP_EXPORT Timer {
      * @brief Default constructor.
      */
     Timer();
+
+    /**
+     * Destroy a Timer.
+     * @brief Default deconstructor.
+     */
     ~Timer();
+
+    Timer(const Timer&) = delete;
+    Timer& operator=(const Timer&) = delete;
+
+    Timer(Timer&&) = delete;
+    Timer& operator=(Timer&&) = delete;
 
     /**
      * @brief Generate a new Timer.
@@ -94,6 +105,8 @@ class EMBDCORECPP_EXPORT Timer {
               period(r.period),
               handler(std::move(r.handler)),
               running(r.running) {}
+
+        ~Instance() {}
 
         Instance& operator=(Instance const& r) = delete;
 

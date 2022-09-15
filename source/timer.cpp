@@ -65,11 +65,11 @@ Timer::timer_id Timer::create(uint64_t msFromNow, uint64_t msPeriod,
 
 Timer::timer_id Timer::createImpl(Instance&& item) {
     ScopedLock lock(sync);
-    item.id = nextId++;
+    const auto id = item.id = nextId++;
     auto iter = active.emplace(item.id, std::move(item));
     queue.insert(iter.first->second);
     wakeUp.notify_all();
-    return item.id;
+    return id;
 }
 
 bool Timer::destroy(timer_id id) {
