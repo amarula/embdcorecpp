@@ -1,4 +1,6 @@
-int main(int argc, char *argv[])
-{
-    return 0;
+﻿#include "tst_timer.hpp"
+
+int main(int argc, char *argv[]) {
+    ::testing::InitGoogleTest(&argc, argv);
+    return RUN_ALL_TESTS();
 }
