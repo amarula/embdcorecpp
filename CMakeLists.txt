@@ -14,7 +14,9 @@ option(BUILD_TESTS "Build tests." OFF)
 
 file(GLOB_RECURSE PROJECT_HEADERS include/*.hpp)
 file(GLOB_RECURSE PROJECT_SOURCES source/*.cpp)
-add_library(${PROJECT_NAME} SHARED ${PROJECT_HEADERS} ${PROJECT_SOURCES})
+file(GLOB_RECURSE PROJECT_MISC .github/workflows/*.yml)
+add_library(${PROJECT_NAME} SHARED ${PROJECT_HEADERS} ${PROJECT_SOURCES}
+                                   ${PROJECT_MISC})
 target_include_directories(
   ${PROJECT_NAME}
   PUBLIC $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
